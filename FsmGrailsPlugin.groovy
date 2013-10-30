@@ -27,7 +27,9 @@ class FsmGrailsPlugin {
     def pluginExcludes = [
             "grails-app/views/error.gsp",
             "grails-app/domain/FsmSupportDummy.groovy",
-            "grails-app/domain/FsmMultipleActions.groovy"
+            "grails-app/domain/FsmMultipleActions.groovy",
+            "grails-app/domain/Foo.groovy",
+            "grails-app/domain/Foo2.groovy"
     ]
     def watchedResources = "file:./grails-app/domain/**/*.groovy"
 
