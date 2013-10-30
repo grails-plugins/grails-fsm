@@ -42,8 +42,7 @@ class FsmUtils {
                 		log.error("Default value of '${domainClass}.${p}' will be overriden by FSM definition for that property. ")
 
                     // Modify the metaclass so new instances will have new behaviour!!
-                	domainClass.metaClass.setProperty(p, start)
-                    domainClass.metaClass.setProperty("_fsm${p}", null)  // internal, will hold FsmSupport instance
+                	domainClass.metaClass.setProperty("_fsm${p}", null)  // internal, will hold FsmSupport instance
                     domainClass.metaClass.fire = fireClosure
                     domainClass.metaClass."fire_${p}" = fireClosure.curry(p)
                     domainClass.metaClass.fireable = fireableClosure
@@ -70,6 +69,7 @@ class FsmUtils {
             			bean."${pp}" = startstart
             		}
             	}
+            	bean
             }
         }
     }
