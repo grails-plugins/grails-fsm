@@ -1,0 +1,162 @@
+<plugin name='fsm' version='0.6.6' grailsVersion='1.1.1 &gt; *'>
+  <author>Jorge Uriarte</author>
+  <authorEmail>jorge.uriarte@omelas.net</authorEmail>
+  <title>Finite State Machine behaviour for domain classes</title>
+  <description>\
+        This plugin allow definition of simple workflows attached to domain classes, including
+        states, events, transitions and conditions.
+        Current workflow's state will be held in domain class' property that must be defined.
+        Multiple workflows can be defined on every domain class.
+</description>
+  <documentation>http://grails.org/plugin/fsm</documentation>
+  <resources>
+    <resource>BuildConfig</resource>
+    <resource>DataSource</resource>
+    <resource>UrlMappings</resource>
+    <resource>Foo</resource>
+    <resource>Foo2</resource>
+    <resource>FsmMultipleActions</resource>
+    <resource>FsmSupportDummy</resource>
+  </resources>
+  <dependencies />
+  <behavior>
+    <method name='fire' artefact='Domain' type='Foo'>
+      <description />
+      <argument type='java.lang.String' />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fire_status' artefact='Domain' type='Foo'>
+      <description />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fireable' artefact='Domain' type='Foo'>
+      <description />
+      <argument type='java.lang.String' />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fireable_status' artefact='Domain' type='Foo'>
+      <description />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='&lt;init&gt;' artefact='Domain' type='Foo'>
+      <description />
+    </method>
+    <method name='fire' artefact='Domain' type='Foo2'>
+      <description />
+      <argument type='java.lang.String' />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fire_estado' artefact='Domain' type='Foo2'>
+      <description />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fireable' artefact='Domain' type='Foo2'>
+      <description />
+      <argument type='java.lang.String' />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fireable_estado' artefact='Domain' type='Foo2'>
+      <description />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fire' artefact='Domain' type='Foo2'>
+      <description />
+      <argument type='java.lang.String' />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fire_estadoEnvio' artefact='Domain' type='Foo2'>
+      <description />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fireable' artefact='Domain' type='Foo2'>
+      <description />
+      <argument type='java.lang.String' />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fireable_estadoEnvio' artefact='Domain' type='Foo2'>
+      <description />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='&lt;init&gt;' artefact='Domain' type='Foo2'>
+      <description />
+    </method>
+    <method name='fire' artefact='Domain' type='FsmMultipleActions'>
+      <description />
+      <argument type='java.lang.String' />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fire_status' artefact='Domain' type='FsmMultipleActions'>
+      <description />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fireable' artefact='Domain' type='FsmMultipleActions'>
+      <description />
+      <argument type='java.lang.String' />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fireable_status' artefact='Domain' type='FsmMultipleActions'>
+      <description />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='&lt;init&gt;' artefact='Domain' type='FsmMultipleActions'>
+      <description />
+    </method>
+    <method name='fire' artefact='Domain' type='FsmSupportDummy'>
+      <description />
+      <argument type='java.lang.String' />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fire_mood' artefact='Domain' type='FsmSupportDummy'>
+      <description />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fireable' artefact='Domain' type='FsmSupportDummy'>
+      <description />
+      <argument type='java.lang.String' />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fireable_mood' artefact='Domain' type='FsmSupportDummy'>
+      <description />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fire' artefact='Domain' type='FsmSupportDummy'>
+      <description />
+      <argument type='java.lang.String' />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fire_status' artefact='Domain' type='FsmSupportDummy'>
+      <description />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fireable' artefact='Domain' type='FsmSupportDummy'>
+      <description />
+      <argument type='java.lang.String' />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='fireable_status' artefact='Domain' type='FsmSupportDummy'>
+      <description />
+      <argument type='java.lang.String' />
+    </method>
+    <method name='&lt;init&gt;' artefact='Domain' type='FsmSupportDummy'>
+      <description />
+    </method>
+    <property name='_fsmstatus' type='Foo' artefact='Domain'>
+      <description />
+    </property>
+    <property name='_fsmestado' type='Foo2' artefact='Domain'>
+      <description />
+    </property>
+    <property name='_fsmestadoEnvio' type='Foo2' artefact='Domain'>
+      <description />
+    </property>
+    <property name='_fsmstatus' type='FsmMultipleActions' artefact='Domain'>
+      <description />
+    </property>
+    <property name='_fsmmood' type='FsmSupportDummy' artefact='Domain'>
+      <description />
+    </property>
+    <property name='_fsmstatus' type='FsmSupportDummy' artefact='Domain'>
+      <description />
+    </property>
+  </behavior>
+</plugin>

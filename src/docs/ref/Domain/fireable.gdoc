@@ -1,0 +1,22 @@
+
+h1. fireable
+
+h2. Purpose
+
+
+
+h2. Examples
+
+{code:java}
+foo.fireable(string,string)
+{code}
+
+h2. Description
+
+
+
+Arguments:
+
+[* @string@
+, * @string@
+]
