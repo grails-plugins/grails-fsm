@@ -26,13 +26,6 @@ grails.project.dependency.resolution = {
         }
         build ":tomcat:$grailsVersion"
         compile ":hibernate:$grailsVersion"
-        compile ":spring-events:1.2"
-        compile "com.ticketbis:virtual-pos:0.3.5"
-        compile ":paypal:0.6.9"
-        
-        test(":code-coverage:1.2.5") {
-            export = false
-        }
     }
 
     dependencies {
