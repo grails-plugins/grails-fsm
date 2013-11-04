@@ -1,4 +1,4 @@
-<plugin name='fsm' version='0.6.7' grailsVersion='1.1.1 &gt; *'>
+<plugin name='fsm' version='0.6.8' grailsVersion='1.1.1 &gt; *'>
   <author>Jorge Uriarte</author>
   <authorEmail>jorge.uriarte@omelas.net</authorEmail>
   <title>Finite State Machine behaviour for domain classes</title>
