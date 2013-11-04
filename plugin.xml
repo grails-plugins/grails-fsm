@@ -23,9 +23,6 @@
   <plugins>
     <compile>
       <plugin group='org.grails.plugins' name='hibernate' version='2.2.1' />
-      <plugin group='org.grails.plugins' name='spring-events' version='1.2' />
-      <plugin group='org.grails.plugins' name='paypal' version='0.6.9' />
-      <plugin group='com.ticketbis' name='virtual-pos' version='0.3.5' />
     </compile>
     <build>
       <plugin group='org.grails.plugins' name='tomcat' version='2.2.1' />
