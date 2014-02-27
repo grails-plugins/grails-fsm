@@ -178,7 +178,10 @@ class FsmSupport
 
     def isFireable(a_event) {
         def transition = transitions[a_event]
-        return (transition[currentState]!=null)
+        transition[currentState].find { to, Closure cond ->
+            cond.setDelegate(target)
+            cond()
+        }
     }
 
     def isState(a_state)
