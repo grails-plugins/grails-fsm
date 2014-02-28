@@ -178,7 +178,7 @@ class FsmSupport
 
     def isFireable(a_event) {
         def transition = transitions[a_event]
-        transition[currentState].find { to, Closure cond ->
+        transition[currentState].any { to, Closure cond ->
             cond.setDelegate(target)
             cond()
         }
@@ -278,8 +278,8 @@ class Grammar
 }
 
 class FsmSupportException extends Exception {
-    def FsmSupportException(String message) {
-        super(message)
+    FsmSupportException(String message) {
+        super((String)message)
     }
 }
 

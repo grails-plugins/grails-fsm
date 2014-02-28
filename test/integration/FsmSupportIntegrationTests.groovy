@@ -1,15 +1,6 @@
-import grails.test.*
 
-class FsmSupportIntegrationTests extends GrailsUnitTestCase {
+class FsmSupportIntegrationTests extends GroovyTestCase {
     static transactional = false
-    protected void setUp() {
-        super.setUp()
-    }
-
-    protected void tearDown() {
-        super.tearDown()
-    }
-
     void testInitialValues() {
         def testa = new FsmSupportDummy()
         assert testa.status == 'initial'
