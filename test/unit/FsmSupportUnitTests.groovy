@@ -1,24 +1,29 @@
-import grails.test.*;
-import grails.plugin.fsm.*;
+import grails.plugin.fsm.*
+import grails.test.mixin.Mock
+import org.junit.After
+import org.junit.Before
+import org.junit.Test
 
-class FsmSupportUnitTests extends GrailsUnitTestCase {
-    static transactional = false
+@Mock([FsmSupportDummy])
+class FsmSupportUnitTests {
 
-    protected void setUp() {
-    	FsmUtils.mockFsm(FsmSupportDummy)
-        super.setUp()
+    @Before
+    void setUp() {
+        FsmUtils.mockFsm(FsmSupportDummy)
     }
 
-    protected void tearDown() {
-    	FsmSupportDummy.metaClass = null
-        super.tearDown()
+    @After
+    void tearDown() {
+        FsmSupportDummy.metaClass = null
     }
 
+    @Test
     void testBasicFsm() {
         def test = new FsmSupportDummy()
         assert test.mood == 'none'
     }
 
+    @Test
     void testErrors() {
         def samp1 = new FsmSupportDummy()
         try {
@@ -31,9 +36,10 @@ class FsmSupportUnitTests extends GrailsUnitTestCase {
         } catch (AssertionError e) {
             assert e.message.contains("Invalid event 'nonevent'")
         }
-        
+
     }
-    
+
+    @Test
     void testComplexFsm() {
         // Take a look at SampleDomainClass to understand what's supposed to happen here
         def samp1 = new FsmSupportDummy()
@@ -74,6 +80,7 @@ class FsmSupportUnitTests extends GrailsUnitTestCase {
     }
 
 /* This one fails telling me that there are no transitions from a 'loaded' state, although I explicitly set the state to be 'validated' instead of 'loaded' */
+    @Test
     void testFireEventsFromExistingStateWithErrors() {
         FsmSupportDummy foo = new FsmSupportDummy()
         foo.mood = 'high'
@@ -84,6 +91,7 @@ class FsmSupportUnitTests extends GrailsUnitTestCase {
         assert foo.mood == 'low'
     }
 
+    @Test
     void testDifferentEventsThrowDifferentWorkflows() {
         FsmSupportDummy foo = new FsmSupportDummy()
         foo.status = 'stopped'
@@ -93,6 +101,7 @@ class FsmSupportUnitTests extends GrailsUnitTestCase {
         assert foo.cheers == 'goodbyeee'
     }
 
+    @Test
     void testIsFireable() {
         FsmSupportDummy foo = new FsmSupportDummy()
         foo.status = 'stopped'

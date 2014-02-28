@@ -1,11 +1,9 @@
-import grails.test.GrailsUnitTestCase;
-
 /**
  * Cases for several actions attached to different transitions from
  * same state with different when conditions attached.
  * 
  */
-class FsmMultipleActionsTests extends GrailsUnitTestCase {
+class FsmMultipleActionsTests extends GroovyTestCase {
     static transactional = false
     void testFirstAction() {
         def foo= new FsmMultipleActions()
