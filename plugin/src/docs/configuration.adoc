@@ -1,0 +1,31 @@
+== Configuration
+
+The flow definition will be in a static block called `fsm_def`, which can hold several flow definition, each of them tied to one property in the class, such as:
+
+[source, groovy]
+----
+static fsm_def = [
+    <flow-property> : [
+        <initial-value> : { <flow-definition-closure> }
+        ],
+    <another-flow> : [
+        <initial-value-2> : { <flow-definition-closure> }
+        ]
+    ]
+
+----
+
+Every closure will use the `on`, `from`, `to`, `when` and `act` clauses to define the desired behavior. The structure of the flow definition closure is as follows:
+
+[source, groovy]
+----
+{ flow ->
+  flow.on (<event>) {
+    from (<source>) [
+        .when ( { <condition to allow the transition, must return boolean> })
+    ].to (<destiny>) [
+        .act ({ <code to run if success> })
+    ]
+  }
+}
+----

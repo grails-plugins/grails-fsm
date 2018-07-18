@@ -1,0 +1,31 @@
+== Usage
+
+Let's say you have the following domain class where you want to use Finite State Machine plugin functionality:
+
+[source,groovy]
+----
+include::{testapp}/grails-app/domain/testapp/SampleDomain.groovy[tags=example1, indent=0]
+----
+
+Following is the example `fsm_def` value for `SampleDomain`:
+
+[source,groovy]
+----
+include::{testapp}/grails-app/domain/testapp/SampleDomain.groovy[tags=example1Fsm, indent=0]
+----
+
+<1> The flow for property `status`.
+<2> The flow for property `mood`.
+
+IMPORTANT: The keys for `fsm_def` block should have corresponding properties in the domain class. Otherwise, the plugin will throw an error `Can't fire on flow 'nonflow' which is not defined in 'class testapp.SampleDomain'`.
+
+=== Initial Values
+
+When you create an instance of `SampleDomain` the properties `status` and `mood` will be initialzed with the values specificied in `fsm_def` block. In the above case, it will be `initial` and `none`. For example:
+
+[source,groovy]
+----
+include::{testapp}/src/integration-test/groovy/testapp/SampleDomainSpec.groovy[tags=initialValueTest,indent=0]
+----
+
+TIP: Please note that the default initial value (such as `String status = "test"`) of the field will be overriden by FSM

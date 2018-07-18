@@ -1,0 +1,8 @@
+== Installation
+
+In order to install the plugin, add the following dependency in your project `build.gradle` file as:
+
+[source,gradle,subs="attributes+"]
+----
+compile "org.grails.plugins:fsm:{fsmVersion}"
+----

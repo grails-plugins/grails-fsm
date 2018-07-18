@@ -1,0 +1,3 @@
+== Introduction
+
+This plugin allow definition of simple workflows attached to domain classes, including states, events, transitions and conditions. Current workflow's state will be held in domain class' property that must be defined. Multiple workflows can be defined on every domain class.

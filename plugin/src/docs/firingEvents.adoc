@@ -1,0 +1,4 @@
+== Firing Events
+
+Every domain that has FSM definition will get set of methods defined:
+

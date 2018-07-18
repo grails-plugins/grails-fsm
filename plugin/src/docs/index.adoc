@@ -1,0 +1,15 @@
+= Finite State Machien Plugin - Reference Documentation
+
+include::introduction.adoc[]
+
+include::installation.adoc[]
+
+include::configuration.adoc[]
+
+include::usage.adoc[]
+
+include::firingEvents.adoc[]
+
+include::testing.adoc[]
+
+include::changelog.adoc[]
