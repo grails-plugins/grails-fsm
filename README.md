@@ -1,4 +1,4 @@
-grails-fsm-trunk
+Grails Finite State Machine Behavior For Domain Classes
 ================
 
 This plugin injects the ability to define and execute simple workflows into domain classes. The current state of the flows will be held in class-properties, that must be explicitely defined in the class (like 'status' and 'mood' in the example below).
