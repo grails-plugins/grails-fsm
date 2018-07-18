@@ -1,7 +1,10 @@
-= My Title
-:version: 1.0.0.BUILD-SNAPSHOT
+= Quick Reference
+:version: {fsmVersion}
 :source-highlighter: coderay
 :imagesdir: ./images
+
+:toc: right
+:toc-title: Quick Reference
 
 [[reference]]
 == Reference
@@ -12,55 +15,55 @@
 [[ref-domain-fire_mood]]
 ==== fire_mood
 
-include::ref/Domain/fire_mood.adoc[]
+include::Domain/fire_mood.adoc[]
 
 [[ref-domain-fireable_estadoEnvio]]
 ==== fireable_estadoEnvio
 
-include::ref/Domain/fireable_estadoEnvio.adoc[]
+include::Domain/fireable_estadoEnvio.adoc[]
 
 [[ref-domain-fireable_estado]]
 ==== fireable_estado
 
-include::ref/Domain/fireable_estado.adoc[]
+include::Domain/fireable_estado.adoc[]
 
 [[ref-domain-fire_estadoEnvio]]
 ==== fire_estadoEnvio
 
-include::ref/Domain/fire_estadoEnvio.adoc[]
+include::Domain/fire_estadoEnvio.adoc[]
 
 [[ref-domain-fireable_mood]]
 ==== fireable_mood
 
-include::ref/Domain/fireable_mood.adoc[]
+include::Domain/fireable_mood.adoc[]
 
 [[ref-domain-<init>]]
 ==== <init>
 
-include::ref/Domain/<init>.adoc[]
+include::Domain/<init>.adoc[]
 
 [[ref-domain-fireable_status]]
 ==== fireable_status
 
-include::ref/Domain/fireable_status.adoc[]
+include::Domain/fireable_status.adoc[]
 
 [[ref-domain-fire_estado]]
 ==== fire_estado
 
-include::ref/Domain/fire_estado.adoc[]
+include::Domain/fire_estado.adoc[]
 
 [[ref-domain-fireable]]
 ==== fireable
 
-include::ref/Domain/fireable.adoc[]
+include::Domain/fireable.adoc[]
 
 [[ref-domain-fire_status]]
 ==== fire_status
 
-include::ref/Domain/fire_status.adoc[]
+include::Domain/fire_status.adoc[]
 
 [[ref-domain-fire]]
 ==== fire
 
-include::ref/Domain/fire.adoc[]
+include::Domain/fire.adoc[]
 
