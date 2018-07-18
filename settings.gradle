@@ -1,0 +1,4 @@
+rootProject.name="grails-fsm"
+include "plugin"
+findProject(":plugin").name = "fsm"
+include "integration-testapp"
