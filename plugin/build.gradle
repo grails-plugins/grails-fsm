@@ -5,16 +5,17 @@ buildscript {
     }
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.3'
     }
 }
 
 version "1.0.0.BUILD-SNAPSHOT"
 group "org.grails.plugins"
 
-apply plugin:"eclipse"
-apply plugin:"idea"
-apply plugin:"org.grails.grails-plugin"
-apply plugin:"org.grails.grails-plugin-publish"
+apply plugin: "eclipse"
+apply plugin: "idea"
+apply plugin: "org.grails.grails-plugin"
+apply plugin: "org.grails.grails-plugin-publish"
 
 repositories {
     mavenLocal()
@@ -41,15 +42,19 @@ bootRun {
 }
 // enable if you wish to package this plugin as a standalone application
 bootRepackage.enabled = false
+
+apply from: "gradle/documentation.gradle"
+
 grailsPublish {
-    // TODO: Provide values here
-    user = 'user'
-    key = 'key'
-    githubSlug = 'foo/bar'
+    userOrg = 'grails'
+    githubSlug = 'gpc/grails-fsm'
     license {
         name = 'Apache-2.0'
     }
-    title = "My Plugin"
-    desc = "Full plugin description"
-    developers = [johndoe:"John Doe"]
+    title = 'Finite State Machine Plugin'
+    desc = 'Grails Finiete State Machine Plugin'
+    developers = [
+            jorgeuriate: "Jorge Uriarte",
+            puneetbehl : "Puneet Behl",
+    ]
 }
