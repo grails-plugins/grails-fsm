@@ -27,8 +27,8 @@ class FsmGrailsPlugin extends Plugin {
     def documentation = "http://grails.org/plugin/fsm"
     def license = "APACHE"
     def developers = [[name: "Puneet Behl", email: "joe@bloggs.net"]]
-    def issueManagement = [system: "Github", url: "https://github.com/gpc/grails-fsm/issues"]
-    def scm = [url: "https://github.com/gpc/grails-fsm"]
+    def issueManagement = [system: "Github", url: "https://github.com/grails-plugins/grails-fsm/issues"]
+    def scm = [url: "https://github.com/grails-plugins/grails-fsm"]
 
     void doWithDynamicMethods() {
         ApplicationContext ctx = applicationContext

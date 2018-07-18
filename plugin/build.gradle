@@ -47,12 +47,12 @@ apply from: "gradle/documentation.gradle"
 
 grailsPublish {
     userOrg = 'grails'
-    githubSlug = 'gpc/grails-fsm'
+    githubSlug = 'grails-plugins/grails-fsm'
     license {
         name = 'Apache-2.0'
     }
     title = 'Finite State Machine Plugin'
-    desc = 'Grails Finiete State Machine Plugin'
+    desc = 'Grails Finiete State Machine Plugin for Domain classes'
     developers = [
             jorgeuriate: "Jorge Uriarte",
             puneetbehl : "Puneet Behl",
