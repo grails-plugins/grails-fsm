@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -e
-set -n
 
 export EXIT_STATUS=0
 
@@ -34,16 +33,16 @@ if [[ -n ${TRAVIS_TAG} ]] || [[ ${TRAVIS_BRANCH} == 'master' && ${TRAVIS_PULL_RE
 
     if [[ -n ${TRAVIS_TAG} ]]; then
         echo "Pushing build to Bintray"
-        ./gradlew :grails-fsm:bintrayUpload || EXIT_STATUS=$?
+        ./gradlew :fsm:bintrayUpload || EXIT_STATUS=$?
     else
         pluginversion=$(<version.txt)
         if [[ $pluginversion = *"BUILD-SNAPSHOT"* ]]; then
             echo "Publishing snapshot..."
-            ./gradlew :grails-fsm:publish || EXIT_STATUS=$?
+            ./gradlew :fsm:publish || EXIT_STATUS=$?
         fi
     fi
 
-    ./gradlew :grails-fsm:docs || EXIT_STATUS=$?
+    ./gradlew :fsm:docs || EXIT_STATUS=$?
 
     git config --global user.name "$GIT_NAME"
     git config --global user.email "$GIT_EMAIL"
