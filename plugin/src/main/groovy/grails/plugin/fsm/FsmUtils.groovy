@@ -1,11 +1,6 @@
 package grails.plugin.fsm
 
-import grails.plugin.fsm.FsmSupport
-import grails.plugin.fsm.FsmSupportException
 import grails.util.GrailsClassUtils
-import org.codehaus.groovy.grails.commons.metaclass.*
-
-//import org.codehaus.groovy.grails.commons.GrailsClassUtils
 import org.springframework.beans.BeanUtils
 
 class FsmUtils {
