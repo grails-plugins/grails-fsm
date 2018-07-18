@@ -25,6 +25,7 @@ package grails.plugin.fsm
  * @author jorge
  *
  */
+
 class FsmSupport {
     /*
      * A map or maps to store events and from states of each
@@ -51,7 +52,7 @@ class FsmSupport {
         ]
      */
     Map<String, Map<String, Map<String, Closure>>> transitions = [:]
-    Map actions = [:]
+    Map<String, Map<Object, Closure>> actions = [:]
 
     String initialState
     String currentState
