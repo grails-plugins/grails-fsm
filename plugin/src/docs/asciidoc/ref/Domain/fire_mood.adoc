@@ -1,0 +1,30 @@
+
+
+===== fire_mood
+
+
+
+===== Purpose
+
+
+
+
+
+===== Examples
+
+
+[source,java]
+----
+foo.fire_mood(string)
+----
+
+
+===== Description
+
+
+
+
+Arguments:
+
+[* `string`
+]

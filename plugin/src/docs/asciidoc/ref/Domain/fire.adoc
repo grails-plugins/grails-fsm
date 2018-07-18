@@ -1,0 +1,31 @@
+
+
+===== fire
+
+
+
+===== Purpose
+
+
+
+
+
+===== Examples
+
+
+[source,java]
+----
+foo.fire(string,string)
+----
+
+
+===== Description
+
+
+
+
+Arguments:
+
+[* `string`
+, * `string`
+]

@@ -1,0 +1,30 @@
+
+
+===== fire_estadoEnvio
+
+
+
+===== Purpose
+
+
+
+
+
+===== Examples
+
+
+[source,java]
+----
+foo.fire_estadoEnvio(string)
+----
+
+
+===== Description
+
+
+
+
+Arguments:
+
+[* `string`
+]

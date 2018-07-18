@@ -1,0 +1,30 @@
+
+
+===== fire_status
+
+
+
+===== Purpose
+
+
+
+
+
+===== Examples
+
+
+[source,java]
+----
+foo.fire_status(string)
+----
+
+
+===== Description
+
+
+
+
+Arguments:
+
+[* `string`
+]

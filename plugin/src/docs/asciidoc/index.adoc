@@ -1,0 +1,66 @@
+= My Title
+:version: 1.0.0.BUILD-SNAPSHOT
+:source-highlighter: coderay
+:imagesdir: ./images
+
+[[reference]]
+== Reference
+
+[[ref-domain]]
+=== Domain
+
+[[ref-domain-fire_mood]]
+==== fire_mood
+
+include::ref/Domain/fire_mood.adoc[]
+
+[[ref-domain-fireable_estadoEnvio]]
+==== fireable_estadoEnvio
+
+include::ref/Domain/fireable_estadoEnvio.adoc[]
+
+[[ref-domain-fireable_estado]]
+==== fireable_estado
+
+include::ref/Domain/fireable_estado.adoc[]
+
+[[ref-domain-fire_estadoEnvio]]
+==== fire_estadoEnvio
+
+include::ref/Domain/fire_estadoEnvio.adoc[]
+
+[[ref-domain-fireable_mood]]
+==== fireable_mood
+
+include::ref/Domain/fireable_mood.adoc[]
+
+[[ref-domain-<init>]]
+==== <init>
+
+include::ref/Domain/<init>.adoc[]
+
+[[ref-domain-fireable_status]]
+==== fireable_status
+
+include::ref/Domain/fireable_status.adoc[]
+
+[[ref-domain-fire_estado]]
+==== fire_estado
+
+include::ref/Domain/fire_estado.adoc[]
+
+[[ref-domain-fireable]]
+==== fireable
+
+include::ref/Domain/fireable.adoc[]
+
+[[ref-domain-fire_status]]
+==== fire_status
+
+include::ref/Domain/fire_status.adoc[]
+
+[[ref-domain-fire]]
+==== fire
+
+include::ref/Domain/fire.adoc[]
+

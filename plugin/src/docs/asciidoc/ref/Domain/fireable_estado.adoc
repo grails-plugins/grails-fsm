@@ -1,0 +1,30 @@
+
+
+===== fireable_estado
+
+
+
+===== Purpose
+
+
+
+
+
+===== Examples
+
+
+[source,java]
+----
+foo.fireable_estado(string)
+----
+
+
+===== Description
+
+
+
+
+Arguments:
+
+[* `string`
+]

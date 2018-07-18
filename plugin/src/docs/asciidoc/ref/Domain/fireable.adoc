@@ -1,0 +1,31 @@
+
+
+===== fireable
+
+
+
+===== Purpose
+
+
+
+
+
+===== Examples
+
+
+[source,java]
+----
+foo.fireable(string,string)
+----
+
+
+===== Description
+
+
+
+
+Arguments:
+
+[* `string`
+, * `string`
+]

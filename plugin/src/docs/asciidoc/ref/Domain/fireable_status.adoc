@@ -1,0 +1,30 @@
+
+
+===== fireable_status
+
+
+
+===== Purpose
+
+
+
+
+
+===== Examples
+
+
+[source,java]
+----
+foo.fireable_status(string)
+----
+
+
+===== Description
+
+
+
+
+Arguments:
+
+[* `string`
+]

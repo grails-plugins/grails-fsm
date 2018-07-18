@@ -1,0 +1,30 @@
+
+
+===== fireable_mood
+
+
+
+===== Purpose
+
+
+
+
+
+===== Examples
+
+
+[source,java]
+----
+foo.fireable_mood(string)
+----
+
+
+===== Description
+
+
+
+
+Arguments:
+
+[* `string`
+]

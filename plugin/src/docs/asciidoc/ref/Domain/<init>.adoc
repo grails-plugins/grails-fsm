@@ -1,0 +1,29 @@
+
+
+===== <init>
+
+
+
+===== Purpose
+
+
+
+
+
+===== Examples
+
+
+[source,java]
+----
+foo.<init>()
+----
+
+
+===== Description
+
+
+
+
+Arguments:
+
+[]
