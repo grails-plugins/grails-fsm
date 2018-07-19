@@ -35,11 +35,8 @@ if [[ -n ${TRAVIS_TAG} ]] || [[ ${TRAVIS_BRANCH} == 'master' && ${TRAVIS_PULL_RE
         echo "Pushing build to Bintray"
         ./gradlew :fsm:bintrayUpload || EXIT_STATUS=$?
     else
-        pluginversion=$(<version.txt)
-        if [[ $pluginversion = *"BUILD-SNAPSHOT"* ]]; then
-            echo "Publishing snapshot..."
-            ./gradlew :fsm:publish || EXIT_STATUS=$?
-        fi
+        echo "Publishing snapshot..."
+        ./gradlew :fsm:publish || EXIT_STATUS=$?
     fi
 
     ./gradlew :fsm:docs || EXIT_STATUS=$?
