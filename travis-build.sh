@@ -51,7 +51,8 @@ if [[ -n ${TRAVIS_TAG} ]] || [[ ${TRAVIS_BRANCH} == 'master' && ${TRAVIS_PULL_RE
 
     # If this is the master branch then update the snapshot
     if [[ ${TRAVIS_BRANCH} == 'master' ]]; then
-        mv ../plugin/build/docs/ghpages.html index.html
+        git rm -rf snapshot/
+        mv ../plugin/build/docs/index.html index.html
         git add index.html
         mkdir -p snapshot
         cp -r ../plugin/build/docs/. ./snapshot/
