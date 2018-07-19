@@ -55,7 +55,7 @@ if [[ -n ${TRAVIS_TAG} ]] || [[ ${TRAVIS_BRANCH} == 'master' && ${TRAVIS_PULL_RE
         mv ../plugin/build/docs/index.html index.html
         git add index.html
         mkdir -p snapshot
-        cp -r ../plugin/build/docs/. ./snapshot/
+        cp -r ././plugin/build/docs/manual/. ./snapshot/
         git add snapshot/*
     fi
 
@@ -63,7 +63,7 @@ if [[ -n ${TRAVIS_TAG} ]] || [[ ${TRAVIS_BRANCH} == 'master' && ${TRAVIS_PULL_RE
     if [[ -n $TRAVIS_TAG ]]; then
         git rm -rf latest/
         mkdir -p latest
-        cp -r ../plugin/build/docs/. ./latest/
+        cp -r ././plugin/build/docs/manual/. ./latest/
         git add latest/*
 
         version="$TRAVIS_TAG" # eg: v3.0.1
@@ -72,11 +72,11 @@ if [[ -n ${TRAVIS_TAG} ]] || [[ ${TRAVIS_BRANCH} == 'master' && ${TRAVIS_PULL_RE
         majorVersion="${majorVersion}x" # 3.0.x
 
         mkdir -p "$version"
-        cp -r ../plugin/build/docs/. "./$version/"
+        cp -r ././plugin/build/docs/manual/. "./$version/"
         git add "$version/*"
 
         git rm -rf "$majorVersion"
-        cp -r ../plugin/build/docs/. "./$majorVersion/"
+        cp -r ././plugin/build/docs/manual/. "./$majorVersion/"
         git add "$majorVersion/*"
     fi
 
