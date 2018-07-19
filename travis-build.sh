@@ -51,7 +51,7 @@ if [[ -n ${TRAVIS_TAG} ]] || [[ ${TRAVIS_BRANCH} == 'master' && ${TRAVIS_PULL_RE
 
     # If this is the master branch then update the snapshot
     if [[ ${TRAVIS_BRANCH} == 'master' ]]; then
-        git rm -rf snapshot/
+        rm -rf snapshot/
         mv ../plugin/build/docs/index.html index.html
         git add index.html
         mkdir -p snapshot
@@ -61,7 +61,7 @@ if [[ -n ${TRAVIS_TAG} ]] || [[ ${TRAVIS_BRANCH} == 'master' && ${TRAVIS_PULL_RE
 
     # If there is a tag present then this becomes the latest
     if [[ -n $TRAVIS_TAG ]]; then
-        git rm -rf latest/
+        rm -rf latest/
         mkdir -p latest
         cp -r ././plugin/build/docs/manual/. ./latest/
         git add latest/*
@@ -71,11 +71,13 @@ if [[ -n ${TRAVIS_TAG} ]] || [[ ${TRAVIS_BRANCH} == 'master' && ${TRAVIS_PULL_RE
         majorVersion=${version:0:4} # 3.0.
         majorVersion="${majorVersion}x" # 3.0.x
 
+        rm -rf "$version"
         mkdir -p "$version"
         cp -r ././plugin/build/docs/manual/. "./$version/"
         git add "$version/*"
 
-        git rm -rf "$majorVersion"
+        rm -rf "$majorVersion"
+        mkdir -p "$majorVersion"
         cp -r ././plugin/build/docs/manual/. "./$majorVersion/"
         git add "$majorVersion/*"
     fi
