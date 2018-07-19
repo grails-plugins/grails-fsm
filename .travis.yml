@@ -13,7 +13,7 @@ before_install:
 - cat /etc/hosts
 before_script:
 - rm -rf target
-script: JAVA_HOME=$(jdk_switcher home openjdk7) "./travis-build.sh"
+script: "./travis-build.sh"
 env:
   global:
   - GRADLE_OPTS="-Xmx768m -Xms256m -XX:MaxPermSize=256m -XX:+CMSClassUnloadingEnabled"
