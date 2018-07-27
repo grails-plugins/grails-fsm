@@ -33,11 +33,11 @@ class FsmGrailsPlugin extends Plugin {
     void doWithDynamicMethods() {
         ApplicationContext ctx = applicationContext
         grailsApplication.domainClasses.each { domainClass ->
-            final Map<String, Map<String, Closure>> fsm = GrailsClassUtils.getStaticPropertyValue(domainClass.clazz, FsmUtils.FSMDEF)
+            final Map<String, Map<?, Closure>> fsm = GrailsClassUtils.getStaticPropertyValue(domainClass.clazz, FsmUtils.FSMDEF)
             if (fsm) {
                 // Will create the proper FsmSupport instance!
                 fsm.each { String p, definition ->
-                    definition.each { String start, Closure defclosure ->
+                    definition.each { start, Closure defclosure ->
                         def mp = domainClass.metaClass.getMetaProperty(p)
                         if (!mp)
                             throw new FsmSupportException("Error in FSM definition: '${domainClass.clazz}' does not have '${p}' property to hold defined workflow status!")
