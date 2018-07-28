@@ -1,21 +1,24 @@
 package testapp
 
+import static testapp.Event.*
+import static testapp.Status.*
+
 class Foo {
 
-    String status
+    Status status
 
     static fsm_def = [
             status: [
-                    loaded: { flow ->
-                        flow.on('ev1') {
-                            from('loaded').when({ hasAttrErrors() }).to('in_error')
-                            from('loaded').when({ !hasAttrErrors() }).to('validated')
+                    (LOADED): { flow ->
+                        flow.on(EV_1) {
+                            from(LOADED).when({ hasAttrErrors() }).to(IN_ERROR)
+                            from(LOADED).when({ !hasAttrErrors() }).to(VALIDATED)
                         }
-                        flow.on('ev2') {
-                            from('in_error').when({ !hasAttrErrors() }).to('validated')
+                        flow.on(EV_2) {
+                            from(IN_ERROR).when({ !hasAttrErrors() }).to(VALIDATED)
                         }
-                        flow.on('ev3') {
-                            from('validated').when({ !hasAttrErrors() }).to('done')
+                        flow.on(EV_3) {
+                            from(VALIDATED).when({ !hasAttrErrors() }).to(DONE)
                         }
                     }
             ]]

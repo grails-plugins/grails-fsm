@@ -33,11 +33,11 @@ class FsmGrailsPlugin extends Plugin {
     void doWithDynamicMethods() {
         ApplicationContext ctx = applicationContext
         grailsApplication.domainClasses.each { domainClass ->
-            final Map<String, Map<?, Closure>> fsm = GrailsClassUtils.getStaticPropertyValue(domainClass.clazz, FsmUtils.FSMDEF)
+            final Map<String, Map<Enum, Closure>> fsm = GrailsClassUtils.getStaticPropertyValue(domainClass.clazz, FsmUtils.FSMDEF)
             if (fsm) {
                 // Will create the proper FsmSupport instance!
                 fsm.each { String p, definition ->
-                    definition.each { start, Closure defclosure ->
+                    definition.each { Enum start, Closure defclosure ->
                         def mp = domainClass.metaClass.getMetaProperty(p)
                         if (!mp)
                             throw new FsmSupportException("Error in FSM definition: '${domainClass.clazz}' does not have '${p}' property to hold defined workflow status!")
@@ -63,8 +63,8 @@ class FsmGrailsPlugin extends Plugin {
                     } else {
                         bean = BeanUtils.instantiateClass(domainClass.clazz)
                     }
-                    bean."$FsmUtils.FSMDEF".each { propertyName, definitions ->
-                        definitions.each { state, clos ->
+                    bean."$FsmUtils.FSMDEF".each { String propertyName, Map<Enum, Closure> definitions ->
+                        definitions.each { Enum state, Closure clos ->
                             bean."${propertyName}" = state
                         }
                     }
@@ -72,8 +72,8 @@ class FsmGrailsPlugin extends Plugin {
                 }
                 domainClass.metaClass.static.create = { ->
                     def bean = ctx.getBean(domainClass.getFullName())
-                    bean."$FsmUtils.FSMDEF".each { propertyName, definitions ->
-                        definitions.each { state, clos ->
+                    bean."$FsmUtils.FSMDEF".each { String propertyName, Map<Enum, Closure> definitions ->
+                        definitions.each { Enum state, Closure clos ->
                             bean."${propertyName}" = state
                         }
                     }

@@ -63,14 +63,14 @@ class FsmUtils {
     }
 
     // Closure for the 'fire' methods to add to the domain classes
-    static Closure fireClosure = {String flow, String event ->
+    static Closure fireClosure = { String flow, Enum event ->
         // Fix current delegate so inner closures will work
         def targetObject = delegate
         targetObject = initializeTargetObject(flow, event, targetObject)
         return targetObject."_fsm${flow}".fire(event)
     }
 
-    static def initializeTargetObject(String flow, String event, Object targetObject) {
+    static def initializeTargetObject(String flow, Enum event, Object targetObject) {
         def flowdef = GrailsClassUtils.getStaticPropertyValue(targetObject.class, FsmUtils.FSMDEF )
         if (flowdef[flow] == null)
             throw new FsmSupportException("Can't fire on flow '${flow}' which is not defined in '${targetObject.class}'")
@@ -90,7 +90,7 @@ class FsmUtils {
         return targetObject        
     }
 
-    static Closure fireableClosure = { String flow, String event ->
+    static Closure fireableClosure = { String flow, Enum event ->
         def targetObject = delegate
         targetObject = initializeTargetObject(flow, event, targetObject)
         return targetObject."_fsm${flow}".isFireable(event)

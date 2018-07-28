@@ -15,6 +15,9 @@
  */
 package testapp
 
+import static testapp.Mood.*
+import static testapp.Status.*
+
 /**
  * The Domain class to held some test of the FsmSupport
  *
@@ -26,13 +29,13 @@ package testapp
 class SampleDomain {
 
     String name
-    String status
+    Status status
 
     /**
      * fsm_def will override this value with 'none' in this example
      * and a Warning will be traced.
      */
-    String mood = "ignored"
+    Mood mood = IGNORED
 
     /**
      * A number > 0 will allow the status flow to start
@@ -43,44 +46,44 @@ class SampleDomain {
     // tag::example1Fsm[]
     static fsm_def = [
             mood  : [ // <1>
-                      none: { flow ->
-                          flow.on('up') {
-                              from('none').when({
-                                  status == 'running'  // Depends on second flow !
-                              }).to('high')
-                              from('low').to('high').act({
+                      (NONE): { flow ->
+                          flow.on(UP) {
+                              from(NONE).when({
+                                  status == RUNNING  // Depends on second flow !
+                              }).to(HIGH)
+                              from(LOW).to(HIGH).act({
                                   doSomethingInteresting()
                               })
-                              from('high').to('high')
-                              from('none').to('none') // Order is CRITICAL !
+                              from(HIGH).to(HIGH)
+                              from(NONE).to(NONE) // Order is CRITICAL !
                           }
-                          flow.on('down') {
-                              from('none').when({
-                                  status == 'running'
-                              }).to('low')
-                              from('low').to('low')
-                              from('high').to('low')
-                              from('none').to('none') // Order is CRITICAL !
+                          flow.on(DOWN) {
+                              from(NONE).when({
+                                  status == RUNNING
+                              }).to(LOW)
+                              from(LOW).to(LOW)
+                              from(HIGH).to(LOW)
+                              from(NONE).to(NONE) // Order is CRITICAL !
                           }
                       }
             ],
             status: [ // <2>
-                      initial: { flow ->
-                          flow.on('launch') {
-                              from('initial').when({
+                      (INITIAL): { flow ->
+                          flow.on(LAUNCH) {
+                              from(INITIAL).when({
                                   isSomethingPending() && amount > 0
-                              }).to('running')
-                              from('initial').to('initial')
+                              }).to(RUNNING)
+                              from(INITIAL).to(INITIAL)
                           }
-                          flow.on('stop') {
-                              from('running').to('stopped')
+                          flow.on(STOPPED) {
+                              from(RUNNING).to(STOPPED)
                           }
-                          flow.on('continue') {
-                              from('stopped').to('running')
+                          flow.on(CONTINUE) {
+                              from(STOPPED).to(RUNNING)
                           }
-                          flow.on('finish') {
-                              from('stopped').to('finished')
-                              from('running').to('finished')
+                          flow.on(FINIHED) {
+                              from(STOPPED).to(FINIHED)
+                              from(RUNNING).to(FINIHED)
                           }
                       }
             ]

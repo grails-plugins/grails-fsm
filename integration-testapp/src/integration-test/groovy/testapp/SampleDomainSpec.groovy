@@ -3,6 +3,9 @@ package testapp
 import grails.testing.mixin.integration.Integration
 import spock.lang.Specification
 
+import static testapp.Mood.NONE
+import static testapp.Status.INITIAL
+
 @Integration
 class SampleDomainSpec extends Specification {
 
@@ -13,8 +16,8 @@ class SampleDomainSpec extends Specification {
         SampleDomain instance = new SampleDomain()
 
         then: "fsm fields will get initial values"
-        instance.status == "initial"
-        instance.mood == "none"
+        instance.status == INITIAL
+        instance.mood == NONE
     }
     // end::initialValueTest[]
 }

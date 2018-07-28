@@ -51,11 +51,11 @@ class FsmSupport {
             ]
         ]
      */
-    Map<String, Map<String, Map<String, Closure>>> transitions = [:]
-    Map<String, Map<Object, Closure>> actions = [:]
+    Map<Enum, Map<Enum, Map<Enum, Closure>>> transitions = [:]
+    Map<String, Map<Enum, Closure>> actions = [:]
 
-    String initialState
-    String currentState
+    Enum initialState
+    Enum currentState
     String property
     def target
 
@@ -65,7 +65,7 @@ class FsmSupport {
      */
     static Map relationships = [:]
 
-    FsmSupport(targetObject, String targetProperty, String a_initialState = null, String a_currentState = null) {
+    FsmSupport(targetObject, String targetProperty, Enum a_initialState = null, Enum a_currentState = null) {
         /**
          * If no initialState has been provided we'll try to get it
          * from the object-property itself!!
@@ -97,9 +97,9 @@ class FsmSupport {
     FsmSupport registerTransition(Grammar a_grammar) {
         assert a_grammar.isValid(), "Invalid transition (${a_grammar})"
 
-        String event = a_grammar.event
-        String fromState = a_grammar.fromState
-        String toState = a_grammar.toState
+        Enum event = a_grammar.event
+        Enum fromState = a_grammar.fromState
+        Enum toState = a_grammar.toState
 
         if (!transitions[event])
             transitions[event] = [:]
@@ -116,9 +116,9 @@ class FsmSupport {
         this
     }
 
-    FsmSupport addActionToTransition(a_grammar) {
-        String fromState = a_grammar.fromState
-        String toState = a_grammar.toState
+    FsmSupport addActionToTransition(Grammar a_grammar) {
+        Enum fromState = a_grammar.fromState
+        Enum toState = a_grammar.toState
         String key = "${a_grammar.event}-${fromState}"
         if (!actions[key]) {
             actions[key] = [:]
@@ -133,16 +133,16 @@ class FsmSupport {
         this
     }
 
-    String fire(String a_event) {
+    Enum fire(Enum a_event) {
         assert currentState, "Invalid current state '${currentState}': pass into constructor"
         assert transitions.containsKey(a_event), "Invalid event '${a_event}', should be one of ${transitions.keySet()}"
 
-        String fromState = currentState
-        String nextState
+        Enum fromState = currentState
+        Enum nextState
 
         Map transition = transitions[a_event]
 
-        transition[currentState].each { String to, Closure cond ->
+        transition[currentState].each { Enum to, Closure cond ->
             cond.setDelegate(target)
             if (!nextState && cond()) {
                 nextState = to
@@ -173,7 +173,7 @@ class FsmSupport {
         currentState
     }
 
-    Boolean isFireable(a_event) {
+    Boolean isFireable(Enum a_event) {
         def transition = transitions[a_event]
         transition[currentState].any { to, Closure cond ->
             cond.setDelegate(target)
@@ -181,7 +181,7 @@ class FsmSupport {
         }
     }
 
-    Boolean isState(a_state) {
+    Boolean isState(Enum a_state) {
         currentState == a_state
     }
 }

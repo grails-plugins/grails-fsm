@@ -5,6 +5,9 @@ import grails.testing.gorm.DataTest
 import spock.lang.Specification
 import spock.util.mop.ConfineMetaClassChanges
 
+import static testapp.Mood.*
+import static testapp.Status.*
+
 @ConfineMetaClassChanges(FsmSupportDummy)
 class FsmSupportUnitTests extends Specification implements DataTest {
 
@@ -22,7 +25,7 @@ class FsmSupportUnitTests extends Specification implements DataTest {
 
     void testBasicFsm() {
         expect:
-        new FsmSupportDummy().mood == 'none'
+        new FsmSupportDummy().mood == NONE
     }
 
     void testErrors() {
@@ -30,7 +33,7 @@ class FsmSupportUnitTests extends Specification implements DataTest {
         def samp1 = new FsmSupportDummy()
 
         when:
-        samp1.fire('nonflow', 'launch')
+        samp1.fire('nonflow', LAUNCH)
 
         then:
         Exception e = thrown()
@@ -38,105 +41,105 @@ class FsmSupportUnitTests extends Specification implements DataTest {
 
 
         when:
-        samp1.fire('mood', 'nonevent')
+        samp1.fire('mood', NON_EVENT)
 
         then:
         AssertionError error = thrown()
-        error.message.contains("Invalid event 'nonevent'")
+        error.message.contains("Invalid event 'NON_EVENT'")
     }
 
     void testComplexFsm() {
         given:
-        String currentState
+        Enum currentState
 
         when:
         def samp1 = new FsmSupportDummy()
 
         then:
-        'initial' == samp1.fire('status', 'launch') // Amount == 0 => Won't launch
+        INITIAL == samp1.fire('status', LAUNCH) // Amount == 0 => Won't launch
 
         when: "Change amount so it will allow starting"
         samp1.amount = 3
 
         then: "Not running, Mood will not change!!"
-        'none' == samp1.fire_mood('up')
-        'none' == samp1.fire('mood', 'up')
-        'none' == samp1.fire('mood', 'up')
+        NONE == samp1.fire_mood(UP)
+        NONE == samp1.fire('mood', UP)
+        NONE == samp1.fire('mood', UP)
 
         when:
-        samp1.fire('status', 'launch')
+        samp1.fire('status', LAUNCH)
 
         then:
-        'running' == samp1.status
+        RUNNING == samp1.status
 
         when: "go high!!"
-        currentState = samp1.fire('mood', 'up')
+        currentState = samp1.fire('mood', UP)
 
         then:
-        'high' == currentState
+        HIGH == currentState
 
         when:
-        samp1.fire('status', 'stop')
+        samp1.fire('status', STOPPED)
 
         then:
-        'stopped' == samp1.status
+        STOPPED == samp1.status
 
         when:
-        samp1.fire('status', 'continue')
+        samp1.fire('status', CONTINUE)
 
         then:
-        'stopped' != samp1.status
-        'running' == samp1.status  // Property delegeated in the domain class!
+        STOPPED != samp1.status
+        RUNNING == samp1.status  // Property delegeated in the domain class!
 
         when:
-        currentState = samp1.fire('mood', 'up')
+        currentState = samp1.fire('mood', UP)
 
         then:
-        'high' == currentState
+        HIGH == currentState
 
         when:
-        currentState = samp1.fire('mood', 'down')
+        currentState = samp1.fire('mood', DOWN)
 
         then:
-        'low' == currentState
+        LOW == currentState
 
         when:
-        def samp2 = new FsmSupportDummy()
+        FsmSupportDummy samp2 = new FsmSupportDummy()
 
         then:
-        'none' == samp2.fire('mood', 'down')
-        'none' == samp2.fire('mood', 'up')
+        NONE == samp2.fire('mood', DOWN)
+        NONE == samp2.fire('mood', UP)
 
         when:
         samp2.amount = 1
-        samp2.fire('status', 'launch')
+        samp2.fire('status', LAUNCH)
 
         then:
-        'running' == samp2.status
+        RUNNING == samp2.status
 
         when:
-        currentState = samp2.fire('mood', 'down')
+        currentState = samp2.fire('mood', DOWN)
 
         then:
-        'low' == currentState
+        LOW == currentState
 
         when:
-        currentState = samp2.fire('mood', 'up')
+        currentState = samp2.fire('mood', UP)
 
         then:
-        'high' == currentState
+        HIGH == currentState
 
         when:
-        currentState = samp2.fire('mood', 'up')
+        currentState = samp2.fire('mood', UP)
 
         then:
-        'high' == currentState
+        HIGH == currentState
 
         when:
-        currentState = samp2.fire('mood', 'down')
+        currentState = samp2.fire('mood', DOWN)
 
         then:
-        'low' == currentState
+        LOW == currentState
     }
 
 /* This one fails telling me that there are no transitions from a 'loaded' state, although I explicitly set the state to be 'validated' instead of 'loaded' */
@@ -144,25 +147,25 @@ class FsmSupportUnitTests extends Specification implements DataTest {
     void testFireEventsFromExistingStateWithErrors() {
         when:
         FsmSupportDummy foo = new FsmSupportDummy()
-        foo.mood = 'high'
-        foo.status = 'running'
-        foo.fire('mood', 'down')
+        foo.mood = HIGH
+        foo.status = RUNNING
+        foo.fire('mood', DOWN)
 
         then:
-        foo.mood == 'low'
+        foo.mood == LOW
     }
 
     void testDifferentEventsThrowDifferentWorkflows() {
         when:
         FsmSupportDummy foo = new FsmSupportDummy()
-        foo.status = 'stopped'
-        foo.fire('status', 'hello')
+        foo.status = STOPPED
+        foo.fire('status', HELLO)
 
         then:
         foo.cheers == 'helloooou'
 
         when:
-        foo.fire('status', 'goodbye')
+        foo.fire('status', GOOD_BYE)
 
         then:
         foo.cheers == 'goodbyeee'
@@ -171,14 +174,14 @@ class FsmSupportUnitTests extends Specification implements DataTest {
     void testIsFireable() {
         when:
         FsmSupportDummy foo = new FsmSupportDummy()
-        foo.status = 'stopped'
+        foo.status = STOPPED
 
         then:
-        ['continue', 'finish', 'hello', 'goodbye'].each {
+        [CONTINUE, FINIHED, HELLO, GOOD_BYE].each {
             foo.fireable('status', it) == true
         }
 
-        ['launch', 'stop'].each {
+        [LAUNCH, STOPPED].each {
             foo.fireable('status', it) == false
         }
     }

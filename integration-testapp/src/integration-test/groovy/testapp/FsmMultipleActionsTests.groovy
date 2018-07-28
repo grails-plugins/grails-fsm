@@ -4,6 +4,8 @@ import grails.testing.mixin.integration.Integration
 import grails.transaction.Rollback
 import spock.lang.Specification
 
+import static testapp.Status.*
+
 /**
  * Cases for several actions attached to different transitions from
  * same state with different when conditions attached.
@@ -15,19 +17,19 @@ class FsmMultipleActionsTests extends Specification {
 
     void testFirstAction() {
         when:
-        def foo = new FsmMultipleActions()
+        FsmMultipleActions foo = new FsmMultipleActions()
         foo.hasErrors = false
 
         then:
         !foo.action1Called
         !foo.action2Called
-        foo.status == 'loaded'
+        foo.status == LOADED
 
         when:
-        foo.fire_status('validate')
+        foo.fire_status(VALIDATED)
 
         then:
-        foo.status == 'validated'
+        foo.status == VALIDATED
         !foo.action1Called
         foo.action2Called
 
@@ -35,19 +37,19 @@ class FsmMultipleActionsTests extends Specification {
 
     void testSecondAction() {
         when:
-        def foo = new FsmMultipleActions()
+        FsmMultipleActions foo = new FsmMultipleActions()
         foo.hasErrors = true
 
         then:
         !foo.action1Called
         !foo.action2Called
-        foo.status == 'loaded'
+        foo.status == LOADED
 
         when:
-        foo.fire_status('validate')
+        foo.fire_status(VALIDATED)
 
         then:
-        foo.status == 'in_error'
+        foo.status == IN_ERROR
         foo.action1Called
         !foo.action2Called
 

@@ -1,4 +1,7 @@
 package testapp
+
+import static testapp.Status.*
+
 /**
  * Domain class to held some test of the Fsm plugin
  * This testcase adapted from Aleksandar Kochnev's propsed to cover a bug in
@@ -6,30 +9,31 @@ package testapp
  */
 class FsmMultipleActions {
 
-    def status = 'loaded'
-    def hasErrors
-    def action1Called = false
-    def action2Called = false
+    Status status = LOADED
+    Boolean hasErrors
+    Boolean action1Called = false
+    Boolean action2Called = false
 
     static fsm_def = [
-	    status : [
-	               loaded : { flow ->
-	                   flow.on ('validate') {                    
-	                       from('loaded').when({hasErrors}).to('in_error').act({
-	                    	   setAction(1)
-	                       })
-	                       from('loaded').when({!hasErrors}).to('validated').act({
-	                    	   setAction(2)
-	                       })
-	                   }
-	               }
-	          ]
+            status: [
+                    (LOADED): { flow ->
+                        flow.on(VALIDATED) {
+                            from(LOADED).when({ hasErrors }).to(IN_ERROR).act({
+                                setAction(1)
+                            })
+                            from(LOADED).when({ !hasErrors }).to(VALIDATED).act({
+                                setAction(2)
+                            })
+                        }
+                    }
+            ]
     ]
+
     def setAction(n) {
-    	this."action${n}Called" = true
+        this."action${n}Called" = true
     }
 
     FsmMultipleActions() {
-    	
+
     }
 }

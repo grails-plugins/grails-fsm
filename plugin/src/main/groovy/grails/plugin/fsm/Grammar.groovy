@@ -3,9 +3,9 @@ package grails.plugin.fsm
 class Grammar {
     FsmSupport fsm
 
-    String event
-    String fromState
-    String toState
+    Enum event
+    Enum fromState
+    Enum toState
     Closure cond
     Closure action
     Boolean conditionable  // 'from' != null && 'to' == null
@@ -14,27 +14,27 @@ class Grammar {
         fsm = a_fsm
     }
 
-    Grammar on(String a_event) {
+    Grammar on(Enum a_event) {
         event = a_event
         toState = fromState = null
         this
     }
 
-    Grammar on(String a_event, Closure a_transitioner) {
+    Grammar on(Enum a_event, Closure a_transitioner) {
         on(a_event)
         a_transitioner.delegate = this
         a_transitioner.call()
         this
     }
 
-    Grammar from(a_fromState) {
+    Grammar from(Enum a_fromState) {
         conditionable = true
         cond = null
         fromState = a_fromState
         this
     }
 
-    Grammar to(a_toState) {
+    Grammar to(Enum a_toState) {
         assert a_toState, "Invalid toState: ${a_toState}"
 
         conditionable = false
