@@ -511,13 +511,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">class SampleDomain {
 
     String name
-    String status
+    Status status
 
     /**
      * fsm_def will override this value with 'none' in this example
      * and a Warning will be traced.
      */
-    String mood = "ignored"
+    Mood mood = IGNORED
 
     /**
      * A number &gt; 0 will allow the status flow to start
@@ -544,44 +544,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">static fsm_def = [
         mood  : [ <i class="conum" data-value="1"></i><b>(1)</b>
-                  none: { flow -&gt;
-                      flow.on('up') {
-                          from('none').when({
-                              status == 'running'  // Depends on second flow !
-                          }).to('high')
-                          from('low').to('high').act({
+                  (NONE): { flow -&gt;
+                      flow.on(UP) {
+                          from(NONE).when({
+                              status == RUNNING  // Depends on second flow !
+                          }).to(HIGH)
+                          from(LOW).to(HIGH).act({
                               doSomethingInteresting()
                           })
-                          from('high').to('high')
-                          from('none').to('none') // Order is CRITICAL !
+                          from(HIGH).to(HIGH)
+                          from(NONE).to(NONE) // Order is CRITICAL !
                       }
-                      flow.on('down') {
-                          from('none').when({
-                              status == 'running'
-                          }).to('low')
-                          from('low').to('low')
-                          from('high').to('low')
-                          from('none').to('none') // Order is CRITICAL !
+                      flow.on(DOWN) {
+                          from(NONE).when({
+                              status == RUNNING
+                          }).to(LOW)
+                          from(LOW).to(LOW)
+                          from(HIGH).to(LOW)
+                          from(NONE).to(NONE) // Order is CRITICAL !
                       }
                   }
         ],
         status: [ <i class="conum" data-value="2"></i><b>(2)</b>
-                  initial: { flow -&gt;
-                      flow.on('launch') {
-                          from('initial').when({
+                  (INITIAL): { flow -&gt;
+                      flow.on(LAUNCH) {
+                          from(INITIAL).when({
                               isSomethingPending() &amp;&amp; amount &gt; 0
-                          }).to('running')
-                          from('initial').to('initial')
+                          }).to(RUNNING)
+                          from(INITIAL).to(INITIAL)
                       }
-                      flow.on('stop') {
-                          from('running').to('stopped')
+                      flow.on(STOPPED) {
+                          from(RUNNING).to(STOPPED)
                       }
-                      flow.on('continue') {
-                          from('stopped').to('running')
+                      flow.on(CONTINUE) {
+                          from(STOPPED).to(RUNNING)
                       }
-                      flow.on('finish') {
-                          from('stopped').to('finished')
-                          from('running').to('finished')
+                      flow.on(FINIHED) {
+                          from(STOPPED).to(FINIHED)
+                          from(RUNNING).to(FINIHED)
                       }
                   }
         ]
@@ -625,8 +625,8 @@ The keys for <code>fsm_def</code> block should have corresponding properties in 
     SampleDomain instance = new SampleDomain()
 
     then: "fsm fields will get initial values"
-    instance.status == "initial"
-    instance.mood == "none"
+    instance.status == INITIAL
+    instance.mood == NONE
 }</code></pre>
 </div>
 </div>
@@ -657,7 +657,7 @@ Please note that the default initial value (such as <code>String status = "test"
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0.BUILD-SNAPSHOT<br>
-Last updated 2018-07-27 12:35:58 +00:00
+Last updated 2018-07-28 06:11:47 +00:00
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
